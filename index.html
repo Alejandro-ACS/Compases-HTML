@@ -1,0 +1,328 @@
+<html>
+<head>
+    <title>Compases</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <script>
+        
+    limpiar();
+        
+    function limpiar() {
+        document.getElementById("UP").innerText = "--";
+        document.getElementById("UC").innerText = "--";
+        document.getElementById("UT").innerText = "--";
+    }
+        
+    function comprobar(){
+        
+        limpiar();
+        
+        var numerador = eval(document.Formulario.Numerador.value);
+        
+        var denominador = eval(document.Formulario.Denominador.value);
+        
+        if (numerador == 2 || 3 || 4 || 5 || 6 || 7 || 9 || 11 || 12){
+            
+            if (denominador == 1 || 2 || 4 || 8 || 16 || 32 || 64){
+                
+                compas(numerador, denominador);
+                
+            }
+        }
+    }
+        
+    function compas(numerador, denominador){
+
+        var notas = ["Redonda", "Blanca", "Negra", "Corchea", "Semicorchea", "Fusa", "Semifusa"];
+        
+        if (numerador <= denominador){
+
+            if (numerador == 2 || numerador == 3 || numerador == 4){
+
+                document.getElementById("UT").innerText = notas[parseInt(Math.log2(denominador))];
+
+                if (numerador == 3){
+
+                  document.getElementById("UC").innerText = + notas[parseInt(Math.log2(denominador)-1*parseInt(numerador/2-0.5))] + " con puntillo";
+
+                } else {
+
+                  document.getElementById("UC").innerText = notas[parseInt(Math.log2(denominador)-1*parseInt(numerador/2))];
+
+                }
+            }
+            if (numerador == 6 || numerador == 9 || numerador == 12){
+
+              document.getElementById("UP").innerText = notas[parseInt(Math.log2(denominador))];
+
+                document.getElementById("UT").innerText = notas[parseInt(Math.log2(denominador)-1)] + " con puntillo";
+
+                if (numerador == 6){
+
+                  document.getElementById("UC").innerText = notas[parseInt(Math.log2(denominador)-1*parseInt((numerador/2)/2)-0.5)] + " con puntillo";
+
+                } else if (numerador == 12){
+
+                  document.getElementById("UC").innerText = notas[parseInt(Math.log2(denominador)-1*parseInt((numerador/2)/2))] + " con puntillo";
+
+                } else if (numerador == 9){
+
+                  document.getElementById("UC").innerText = notas[parseInt(Math.log2(denominador)-1*2)];
+
+                }
+            }
+            if (numerador == 5 || numerador == 7 || numerador == 11){
+
+              document.getElementById("UT").innerText = notas[parseInt(Math.log2(denominador))];
+
+                if (numerador == 5){
+
+                  document.getElementById("UC").innerText = notas[parseInt(Math.log2(denominador)-1)] + " con puntillo ligada a " + notas[parseInt(Math.log2(denominador)-1)].toLowerCase();
+
+                } else if (numerador == 7){
+
+                  document.getElementById("UC").innerText = notas[parseInt(Math.log2(denominador)-2)] + " ligada a " + notas[parseInt(Math.log2(denominador)-1)].toLowerCase() + " con puntillo";
+
+                } else if (numerador == 11){
+
+                  document.getElementById("UC").innerText = notas[parseInt(Math.log2(denominador)-3)] + " ligada a " + notas[parseInt(Math.log2(denominador)-1)].toLowerCase() + " con puntillo";
+
+                }
+            }
+        }
+        if (numerador > denominador){
+
+          if (numerador == 2 || numerador == 3 || numerador == 4){
+
+            document.getElementById("UT").innerText = notas[parseInt(Math.log2(denominador))];
+
+            if (numerador == 2){
+
+              document.getElementById("UC").innerText = "Redonda ligada a redonda";
+
+            } else if (numerador == 3){
+
+              if (denominador == 1){
+
+                document.getElementById("UC").innerText = "Redonda con puntillo ligada a redonda con puntillo";
+
+              } else if (denominador == 2){
+
+                document.getElementById("UC").innerText = "Redonda con puntillo";
+
+              }
+
+            } else if (numerador == 4){
+
+              if (denominador == 1){
+
+                document.getElementById("UC").innerText = "Redonda con puntillo ligada a redonda con puntillo ligada a redonda";
+
+              } else if (denominador == 2){
+
+                document.getElementById("UC").innerText = "Redonda ligada a redonda";
+
+              }
+            }
+
+            } else if (numerador == 6 || numerador == 9 || numerador == 12){
+
+              document.getElementById("UP").innerText = notas[parseInt(Math.log2(denominador))];
+
+            if (denominador != 1){
+
+              document.getElementById("UT").innerText = notas[parseInt(Math.log2(denominador)-1)] + " con puntillo";
+
+            } else {
+
+              document.getElementById("UT").innerText = "Redonda con puntillo ligada a redonda con puntillo";
+
+            }
+
+            if (numerador == 6){
+
+              if (denominador == 1){
+
+                document.getElementById("UC").innerText = "Redonda con puntillo ligada a redonda con puntillo ligada a redonda con puntillo ligada a redonda con puntillo";
+
+              } else if (denominador == 2){
+
+                document.getElementById("UC").innerText = "Redonda con puntillo ligada a redonda con puntillo";
+
+              } else if (denominador == 4){
+
+                document.getElementById("UC").innerText = "Redonda con puntillo";
+
+              }
+
+            } else if (numerador == 9){
+
+              if (denominador == 1){
+
+                document.getElementById("UC").innerText = "Redonda con puntillo ligada a redonda con puntillo ligada a redonda con puntillo ligada a redonda con puntillo ligada a redonda con puntillo ligada a redonda con puntillo";
+
+              } else if (denominador == 2){
+
+                document.getElementById("UC").innerText = "Redonda con puntillo ligada a redonda con puntillo ligada a redonda con puntillo";
+
+              } else if (denominador == 4){
+
+                document.getElementById("UC").innerText = "Redonda con puntillo ligada a blanca con puntillo";
+
+              } else if (denominador == 8){
+
+                document.getElementById("UC").innerText = "Blanca con puntillo ligada a negra con puntillo";
+
+              }
+
+            } else if (numerador == 12){
+
+              if (denominador == 1){
+
+                document.getElementById("UC").innerText = "Redonda con puntillo ligada a redonda con puntillo ligada a redonda con puntillo ligada a redonda con puntillo ligada a redonda con puntillo ligada a redonda con puntillo ligada a redonda con puntillo ligada a redonda con puntillo";
+
+              } else if (denominador == 2){
+
+                document.getElementById("UC").innerText = "Redonda con puntillo ligada a redonda con puntillo ligada a redonda con puntillo ligada a redonda con puntillo";
+
+              } else if (denominador == 4){
+
+                document.getElementById("UC").innerText = "Redonda con puntillo ligada a redonda con puntillo";
+
+              } else if (denominador == 8){
+
+                document.getElementById("UC").innerText = "Redonda con puntillo";
+
+              }
+
+            }
+
+            } else if (numerador == 5 || numerador == 7 || numerador == 11){
+
+              document.getElementById("UT").innerText = notas[parseInt(Math.log2(denominador))];
+
+            if (numerador == 5){
+
+              if (denominador == 1){
+
+                document.getElementById("UC").innerText = "Redonda con puntillo ligada a redonda con puntillo ligada a redonda ligada a redonda";
+
+              } else if (denominador == 2){
+
+                document.getElementById("UC").innerText = "Redonda con pun tillo ligaa a redonda";
+
+              } else if (denominador == 4){
+
+                document.getElementById("UC").innerText = "Blanca con puntillo ligada a blanca";
+
+              }
+
+            } else if (numerador == 7){
+
+              if (denomiandor == 1){
+
+                document.getElementById("UC").innerText = "Redonda con puntillo ligada a redonda con puntillo ligada a redonda ligada a redonda con puntillo ligada a redonda con puntillo";
+
+              } else if (denominador == 2){
+
+                document.getElementById("UC").innerText = "Redonda ligada a redonda ligada a redonda con puntillo";
+
+              } else if (denominador == 4){
+
+                document.getElementById("UC").innerText = "Redonda ligada a blanca con puntillo";
+
+              }
+
+            } else if (numerador == 11){
+
+              if (denominador == 1){
+
+                document.getElementById("UC").innerText = "Redonda con puntillo ligada a redonda con puntillo ligada a redonda ligada a redonda con puntillo ligada a redonda con puntillo ligada a redonda ligada a redonda con puntillo ligada a redonda con puntillo";
+
+              } else if (denominador == 2){
+
+                document.getElementById("UC").innerText = "Redonda ligada a redonda ligada a redonda ligada a redonda ligada a redonda con puntillo";
+
+              } else if (denominador == 4){
+
+                document.getElementById("UC").innerText = "Redonda ligada a redonda ligada a redonda con puntillo";
+
+              } else if (denominador == 8){
+
+                document.getElementById("UC").innerText = "Redonda ligada a negra con puntillo";
+
+              }
+            }
+
+            }
+
+        }
+    }
+
+    </script>
+
+    <style>
+        
+        .form {
+          width: 100%;
+          max-width: 600px;
+          margin: 0 auto;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .form input {
+          margin: 0.5rem;
+        }
+        body {
+
+            background: #141E30;  /* fallback for old browsers */
+
+            background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+
+            background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        }
+    </style>
+
+    </head>
+
+    <body>
+        <div class="container p-4">
+            
+            <div class="jumbotron">
+                        
+                    <H2 style="text-align: center;">Compases</H2>
+                        
+                    <form name="Formulario" class="form">
+                        
+                        <input type="number" min="2" max="12" name="Numerador"><input type="number" min="1" max="64" name="Denominador">
+                        
+                        <span>
+                        
+                        <input type="button" value="Enviar" onclick="comprobar()" style="width: 100%;">
+                    
+                    </form>
+                    
+                    <hr>
+                            
+                    <h6 style="text-align:center;">U.P.</h4>
+                            
+                    <p id="UP" type="text" style="text-align: center;" p></p>
+                            
+                    <h6 style="text-align:center">U.T.</h4>
+                            
+                    <p id="UT" type="text" style="text-align: center;" p></p>
+                        
+                    <h6 style="text-align:center">U.C.</h4>
+                            
+                    <p id="UC" style="text-align:center;" p></p>
+        
+                </div>
+        </div>
+    </body>
+
+</html>
