@@ -1,0 +1,340 @@
+<html>
+<head>
+    <title>Compases</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <style>
+      @font-face {
+        font-family: 'Notas';
+        src: url('./Notas-Regular.ttf') format("truetype");
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <script>
+        
+    function limpiar() {
+        document.getElementById("UP").innerText = "--";
+        document.getElementById("UC").innerText = "--";
+        document.getElementById("UT").innerText = "--";
+    }
+        
+    function comprobar(){
+        
+        var numerador = eval(document.Formulario.Numerador.value);
+        
+        var denominador = eval(document.Formulario.Denominador.value);
+
+        limpiar();
+        
+        if (numerador == 1 || numerador == 2 || numerador == 3 || numerador == 4 || numerador == 5 || numerador == 6 || numerador == 7 || numerador == 9 || numerador == 11 || numerador == 12){
+            
+            if (denominador == 1 || denominador == 2 || denominador == 4 || denominador == 8 || denominador == 16 || denominador == 32 || denominador == 64){
+                
+                compas(numerador, denominador);
+                
+            }
+        }
+    }
+        
+    function compas(numerador, denominador){
+
+        var notas = ["G", "F", "A", "B", "C", "D", "E"];
+        
+        if (numerador <= denominador){
+
+            if (numerador == 1){
+                document.getElementById("UT").innerText = notas[parseInt(Math.log2(denominador))];
+
+                document.getElementById("UC").innerText = notas[parseInt(Math.log2(denominador))];
+            }
+            if (numerador == 2 || numerador == 3 || numerador == 4){
+
+                document.getElementById("UT").innerText = notas[parseInt(Math.log2(denominador))];
+
+                if (numerador == 3){
+
+                  document.getElementById("UC").innerText = notas[parseInt(Math.log2(denominador)-1*parseInt(numerador/2-0.5))] + ".";
+
+                } else {
+
+                  document.getElementById("UC").innerText = notas[parseInt(Math.log2(denominador)-1*parseInt(numerador/2))];
+
+                }
+            }
+            if (numerador == 6 || numerador == 9 || numerador == 12){
+
+              document.getElementById("UP").innerText = notas[parseInt(Math.log2(denominador))];
+
+                document.getElementById("UT").innerText = notas[parseInt(Math.log2(denominador)-1)] + ".";
+
+                if (numerador == 6){
+
+                  document.getElementById("UC").innerText = notas[parseInt(Math.log2(denominador)-1*parseInt((numerador/2)/2)-0.5)] + ".";
+
+                } else if (numerador == 12){
+
+                  document.getElementById("UC").innerText = notas[parseInt(Math.log2(denominador)-1*parseInt((numerador/2)/2))] + ".";
+
+                } else if (numerador == 9){
+
+                  document.getElementById("UC").innerText = notas[parseInt(Math.log2(denominador)-1*2)] + ".H" + notas[parseInt(Math.log2(denominador)-1)] + ".";
+
+                }
+            }
+            if (numerador == 5 || numerador == 7 || numerador == 11){
+
+              document.getElementById("UT").innerText = notas[parseInt(Math.log2(denominador))];
+
+                if (numerador == 5){
+
+                  document.getElementById("UC").innerText = notas[parseInt(Math.log2(denominador)-1)] + ".H" + notas[parseInt(Math.log2(denominador)-1)];
+
+                } else if (numerador == 7){
+
+                  document.getElementById("UC").innerText = notas[parseInt(Math.log2(denominador)-2)] + "H" + notas[parseInt(Math.log2(denominador)-1)] + ".";
+
+                } else if (numerador == 11){
+
+                  document.getElementById("UC").innerText = notas[parseInt(Math.log2(denominador)-3)] + "H" + notas[parseInt(Math.log2(denominador)-1)] + ".";
+
+                }
+            }
+        }
+        if (numerador > denominador){
+
+          if (numerador == 2 || numerador == 3 || numerador == 4){
+
+            document.getElementById("UT").innerText = notas[parseInt(Math.log2(denominador))];
+
+            if (numerador == 2){
+
+              document.getElementById("UC").innerText = "GHG";
+
+            } else if (numerador == 3){
+
+              if (denominador == 1){
+
+                document.getElementById("UC").innerText = "G.HG.";
+
+              } else if (denominador == 2){
+
+                document.getElementById("UC").innerText = "G.";
+
+              }
+
+            } else if (numerador == 4){
+
+              if (denominador == 1){
+
+                document.getElementById("UC").innerText = "G.HG.HG";
+
+              } else if (denominador == 2){
+
+                document.getElementById("UC").innerText = "GHG";
+
+              }
+            }
+
+            } else if (numerador == 6 || numerador == 9 || numerador == 12){
+
+              document.getElementById("UP").innerText = notas[parseInt(Math.log2(denominador))];
+
+            if (denominador != 1){
+
+              document.getElementById("UT").innerText = notas[parseInt(Math.log2(denominador)-1)] + ".";
+
+            } else {
+
+              document.getElementById("UT").innerText = "G.HG.";
+
+            }
+
+            if (numerador == 6){
+
+              if (denominador == 1){
+
+                document.getElementById("UC").innerText = "G.HG.HG.HG.";
+
+              } else if (denominador == 2){
+
+                document.getElementById("UC").innerText = "G.HG.";
+
+              } else if (denominador == 4){
+
+                document.getElementById("UC").innerText = "G.";
+
+              }
+
+            } else if (numerador == 9){
+
+              if (denominador == 1){
+
+                document.getElementById("UC").innerText = "G.HG.HG.HG.HG.HG.";
+
+              } else if (denominador == 2){
+
+                document.getElementById("UC").innerText = "G.HG.HG.";
+
+              } else if (denominador == 4){
+
+                document.getElementById("UC").innerText = "G.HF.";
+
+              } else if (denominador == 8){
+
+                document.getElementById("UC").innerText = "F.HA.";
+
+              }
+
+            } else if (numerador == 12){
+
+              if (denominador == 1){
+
+                document.getElementById("UC").innerText = "G.HG.HG.HG.HG.HG.HG.HG.";
+
+              } else if (denominador == 2){
+
+                document.getElementById("UC").innerText = "G.HG.HG.HG.";
+
+              } else if (denominador == 4){
+
+                document.getElementById("UC").innerText = "G.HG.";
+
+              } else if (denominador == 8){
+
+                document.getElementById("UC").innerText = "G.";
+
+              }
+
+            }
+
+            } else if (numerador == 5 || numerador == 7 || numerador == 11){
+
+              document.getElementById("UT").innerText = notas[parseInt(Math.log2(denominador))];
+
+            if (numerador == 5){
+
+              if (denominador == 1){
+
+                document.getElementById("UC").innerText = "G.HG.HGHG";
+
+              } else if (denominador == 2){
+
+                document.getElementById("UC").innerText = "G.HG";
+
+              } else if (denominador == 4){
+
+                document.getElementById("UC").innerText = "F.HF";
+
+              }
+
+            } else if (numerador == 7){
+
+              if (denominador == 1){
+
+                document.getElementById("UC").innerText = "G.HG.HGHG.HG.";
+
+              } else if (denominador == 2){
+
+                document.getElementById("UC").innerText = "GHGHG";
+
+              } else if (denominador == 4){
+
+                document.getElementById("UC").innerText = "GHF.";
+
+              }
+
+            } else if (numerador == 11){
+
+              if (denominador == 1){
+
+                document.getElementById("UC").innerText = "G.HG.HGHG.HG.HGHG.HG.";
+
+              } else if (denominador == 2){
+
+                document.getElementById("UC").innerText = "GHGHGHGHG.";
+
+              } else if (denominador == 4){
+
+                document.getElementById("UC").innerText = "GHGHG.";
+
+              } else if (denominador == 8){
+
+                document.getElementById("UC").innerText = "GHA.";
+
+              }
+            }
+
+            }
+
+        }
+    }
+
+    </script>
+
+    <style>
+        
+        .form {
+          width: 100%;
+          max-width: 600px;
+          margin: 0 auto;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .form input {
+          margin: 0.5rem;
+        }
+        body {
+
+            background: #141E30;  /* fallback for old browsers */
+
+            background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+
+            background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        }
+    </style>
+
+    </head>
+
+    <body onload="limpiar()">
+        <div class="container p-4">
+            
+            <div class="jumbotron">
+                        
+                    <H2 style="text-align: center;">Compases</H2>
+                        
+                    <form name="Formulario" class="form">
+                        
+                        <input type="number" min="1" max="12" name="Numerador"><input type="number" min="1" max="64" name="Denominador">
+                        
+                        <span>
+                        
+                        <input type="button" value="Enviar" onclick="comprobar()" style="width: 100%;">
+                    
+                    </form>
+                    
+                    <hr>
+                            
+                    <h6 style="text-align:center;">U.P.</h4>
+                            
+                    <h1 id="UP" type="text" style="text-align: center; font-family: Notas;" p></h1>
+                            
+                    <h6 style="text-align:center">U.T.</h4>
+                            
+                    <h1 id="UT" type="text" style="text-align: center; font-family: Notas;" p></h1>
+                        
+                    <h6 style="text-align:center">U.C.</h4>
+                            
+                    <h1 id="UC" style="text-align:center; font-family: Notas;" p></h1>
+        
+                </div>
+        </div>
+    </body>
+
+</html>
